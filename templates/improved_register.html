@@ -1,0 +1,73 @@
+
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+<div class = "logo">
+    <img src = 'data:image/png;base64, {{logo}}' class="logo"/>
+</div>
+<style>
+    body{
+        max-width: 900px;
+        margin: auto;
+    }
+</style>
+
+
+<body>
+
+<form method="POST" enctype="multipart/form-data" action="/register/" >
+						<div class="form-group" id="#signup-form">
+							<input type="text" class="form-control" placeholder="First Name" name="firstname">
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Last Name" name="lastname">
+						</div>
+
+						<div class="form-group">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+						</div>
+
+						<div class="form-group">
+							<input type="date" class="form-control" placeholder="date of birth (format:1994-12-12)" name="birthday">
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Hometown" name="hometown">
+						</div>
+
+						<div class="form-group">
+							<input type="radio"
+							       class="form-control"
+							       placeholder="Gender"
+							       name="gender"
+							       value =
+							       "Female">Female<br>
+							<input type="radio"
+							       class="form-control"
+							       placeholder="Gender"
+							       name="gender"
+							       value =
+							       "Male">Male<br>
+							<input type="radio"
+							       class="form-control"
+							       placeholder="Gender"
+							       name="gender"
+							       value =
+							       "Other">Other<br>
+							
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" placeholder="Password" name="password">
+						</div>
+						<div class="form-group">
+							Brief bio (500 characters)<br>
+							<textarea name="bio" cols="60" rows="10">
+								</textarea><input type="reset"><br/>
+						</div>
+						<div class="form-group">
+							<label for="photo">(optional) Select a profile photo:</label><input type="file" name="photo" class="form-control"/><br />
+						</div>
+						<button type="submit" value="Search" class="btn btn-default submit">Sign Up Now!</button>
+					</form>
+</body>

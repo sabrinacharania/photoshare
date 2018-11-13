@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+<div class = "logo">
+    <img src = 'data:image/png;base64, {{logo}}' class="logo"/>
+</div>
+<style>
+    body{
+        max-width: 900px;
+        margin: auto;
+    }
+</style>
+<body>
+    <h1>View your friends</h1>
+
+{% if message %}
+    <h4>{{message}}!</h4>
+{% endif %}
+
+    {% if friends %}
+        <h2>Here are your friends!</h2>
+        {% for friend in friends %}
+            {{friend[0]}} {{friend[1]}}<br>
+        {% endfor %}
+    {% endif %}
+
+    <h2>Add a friend:</h2>
+    <form method="post" action="/friends/">
+        <input type="text" name="fname" placeholder="first name"/><input type="text" name="lname" placeholder="last name"/>
+        <button type="submit" value="search" class="btn btn-default submit">Search</button>
+    </form>
+<p> Go back to <a href='/profile'>profile</a></p>
+</body>
+</html>

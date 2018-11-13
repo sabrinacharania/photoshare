@@ -1,0 +1,59 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+<div class = "logo">
+    <img src = 'data:image/png;base64, {{logo}}' class="logo"/>
+</div>
+
+<head>
+    <title>Upload a photo!</title>
+</head>
+<br>
+<style>
+    body{
+        max-width: 900px;
+        margin: auto;
+    }
+</style>
+    <body>
+        <div class="title">
+            <h1>Upload a photo to your profile</h1>
+        </div>
+            <form method="post" enctype="multipart/form-data" action="/upload">
+                <label for="photo">Select your photo:</label>
+                <input type="file" name="photo" required='true' /><br />
+                <label for="caption">Write a caption:</label>
+                <input type="text" name="caption" required='true' /><br/>
+
+                <div class="albums">
+                    <label for="album">Select an album:</label><br>
+                    {% if albums %}
+                        {% for album in albums %}
+                        <input type="radio" name="album" value="{{album[0]}}" class="form-control"> {{album[0]}}<br>
+                        {% endfor %}
+                        <input type="radio" name="new_album" class="form-control">New album:<input type="text" name="album"/><br />
+                    {% else %}
+                         <input type="radio" name="new_album" class="form-control">New album:<input type="text" name="album"/><br />
+                    {% endif %}
+                </div>
+                <div class="tags">
+                    <label for="tag">(optional) Choose a tag(s):</label><br>
+                    {% if tags %}
+                        {% for tag in tags %}
+                        <input type="checkbox" name="tag" value="{{tag[0]}}" class="form-control"> {{tag[0]}}<br>
+                        {% endfor %}
+                        <input type="checkbox" name="new_tag" class="form-control">New tag(s):<input type="text" name="tag"/><br />
+                    {% else %}
+                        <input type="checkbox" name="new_tag" class="form-control">New tag(s):<input type="text" name="tag"/><br />
+                    {% endif %}
+                </div>
+
+                <br>
+                <input type="submit" value="Upload" />
+            </form>
+        <p> <a href='/'>Home</a></p>
+        <p><a href='/profile'>Profile</a></p>
+    </body>

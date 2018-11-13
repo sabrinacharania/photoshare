@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+<div class = "logo">
+    <img src = 'data:image/png;base64, {{logo}}' class="logo"/>
+</div>
+<style>
+    body{
+        max-width: 900px;
+        margin: auto;
+    }
+</style>
+<body>
+    <h1>Photos in album</h1>
+
+{% if message %}
+<h4>{{message}}!</h4>
+{% endif %}
+
+{% if photos %}
+<h2>Photos:</h2>
+{% for photo in photos %}
+    <br><img src='data:image/png;base64, {{photo[0]}}' width=400, height=300, mode='crop' class="flex-item"/><br>
+        <form method="post" enctype="multipart/form-data" action="/deleteTag">
+            <input type="hidden" name="photo_id" value="{{ photo[1] }}"><input type="submit" value="delete tag from photo"/>
+        </form>
+    <form method="post" enctype="multipart/form-data" action="/addTag">
+        <label for="addTag">Add a tag to this photo:</label> <input type="text" name="tag"> <input type="hidden" name="photo_id" value="{{ photo[1] }}"><input type="submit" value="add"/>
+    </form>
+    {% endfor %}
+{% endif %}
+
+</form>
+<p> <a href='/'>Home</a></p>
+<p><a href='/profile'>Profile</a></p>
+</body>
+</html>
